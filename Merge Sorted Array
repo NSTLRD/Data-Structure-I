@@ -1,0 +1,40 @@
+To solve this problem in O(m + n) time, you can use two pointers to keep track of the current position in nums1 and nums2.
+You can then compare the values at the current positions in nums1 and nums2 and add the smaller value to the result array. 
+You can then increment the pointer for the array
+that you added the value from and continue until you have processed all of the values in nums1 and nums2.
+
+class Solution {
+  public void merge(int[] nums1, int m, int[] nums2, int n) {
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int[] result = new int[m + n];
+    while (i < m && j < n) {
+      if (nums1[i] < nums2[j]) {
+        result[k] = nums1[i];
+        i++;
+      } else {
+        result[k] = nums2[j];
+        j++;
+      }
+      k++;
+    }
+    while (i < m) {
+      result[k] = nums1[i];
+      i++;
+      k++;
+    }
+    while (j < n) {
+      result[k] = nums2[j];
+      j++;
+      k++;
+    }
+    System.arraycopy(result, 0, nums1, 0, m + n);
+  }
+}
+
+This function takes in two arrays nums1 and nums2 and two integers m and n, 
+and stores the merged and sorted result in nums1. It does this by using two pointers to
+keep track of the current position in nums1 and nums2, comparing the values at the current positions,
+and adding the smaller value to the result array. It then increments the pointer for the array that it added the value from and continues 
+until it has processed all of the values in nums1 and nums2. Finally, it copies the result array into nums1.
