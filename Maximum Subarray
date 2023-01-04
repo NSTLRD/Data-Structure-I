@@ -1,0 +1,15 @@
+class Solution {
+  public int maxSubArray(int[] nums) {
+    int maxSum = Integer.MIN_VALUE;
+    int currentSum = 0;
+    for (int num : nums) {
+      currentSum = Math.max(num, currentSum + num);
+      maxSum = Math.max(maxSum, currentSum);
+    }
+    return maxSum;
+  }
+}
+
+This function takes in an array nums and returns the sum of the subarray with the largest sum.
+It does this by using Kadane's algorithm to keep track of the maximum sum
+ending at each index and returning the maximum of all of the ending sums.
