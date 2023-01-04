@@ -1,0 +1,19 @@
+class Solution {
+  public int[] twoSum(int[] nums, int target) {
+    Map<Integer, Integer> values = new HashMap<>();
+    for (int i = 0; i < nums.length; i++) {
+      int complement = target - nums[i];
+      if (values.containsKey(complement)) {
+        return new int[] { values.get(complement), i };
+      }
+      values.put(nums[i], i);
+    }
+    throw new IllegalArgumentException("No two sum solution");
+  }
+}
+
+This function takes in an array nums and an integer target, and returns the indices of the two numbers such that they add up to the target.
+It does this by using a hash map to store the indices of the values that it has seen so far and checking 
+if the target minus the current value is in the hash map. If it is, it returns the indices of the current value and the target minus the current value.
+If it is not, it adds the current value and its index to the hash map and continues to the next value. 
+If it finishes iterating through the array and has not found a solution, it throws an exception.
