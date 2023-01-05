@@ -26,3 +26,10 @@ class Solution {
         return result;
     }
 }
+
+-------------------------
+Here is a Java solution that uses a HashMap to store the frequency of each element in nums1 and then iterates 
+through nums2 to find the intersection of the two arrays has a time complexity of O(m + n), 
+where m and n are the sizes of nums1 and nums2, respectively.
+
+ you can call the intersect method and pass in the two arrays as arguments. 
