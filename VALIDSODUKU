@@ -1,0 +1,63 @@
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        // Check rows
+        for (char[] row : board) {
+            if (!isValid(row)) {
+                return false;
+            }
+        }
+
+        // Check columns
+        for (int col = 0; col < 9; col++) {
+            if (!isValid(getColumn(board, col))) {
+                return false;
+            }
+        }
+
+        // Check 3 x 3 sub-boxes
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (!isValid(getSubBox(board, i, j))) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private boolean isValid(char[] lst) {
+        // Check if a list contains the digits 1-9 without repetition
+        Set<Character> set = new HashSet<>();
+        for (char c : lst) {
+            if (c != '.') {
+                if (set.contains(c)) {
+                    return false;
+                }
+                set.add(c);
+            }
+        }
+        return true;
+    }
+
+    private char[] getColumn(char[][] board, int col) {
+        // Get the specified column from the board
+        char[] column = new char[9];
+        for (int i = 0; i < 9; i++) {
+            column[i] = board[i][col];
+        }
+        return column;
+    }
+
+    private char[] getSubBox(char[][] board, int row, int col) {
+        // Get the specified 3 x 3 sub-box from the board
+        char[] subBox = new char[9];
+        int index = 0;
+        for (int i = 3 * row; i < 3 * row + 3; i++) {
+            for (int j = 3 * col; j < 3 * col + 3; j++) {
+                subBox[index++] = board[i][j];
+            }
+        }
+        return subBox;
+    }
+}
