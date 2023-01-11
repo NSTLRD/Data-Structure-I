@@ -1,0 +1,34 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String[] words = s.split(" ");
+        if (words.length != pattern.length()) {
+            return false;
+        }
+        
+        Map<Character, String> charToWord = new HashMap<>();
+        Map<String, Character> wordToChar = new HashMap<>();
+        for (int i = 0; i < pattern.length(); i++) {
+            char c = pattern.charAt(i);
+            String word = words[i];
+            if (!charToWord.containsKey(c)) {
+                if (wordToChar.containsKey(word)) {
+                    return false;
+                }
+                charToWord.put(c, word);
+                wordToChar.put(word, c);
+            } else {
+                if (!charToWord.get(c).equals(word)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+==================solutionexplaind================
+This solution uses two HashMap to store mapping between character in the pattern and word in the string.
+It iterates through each character and word, if the character is not seen before,
+it will store the mapping, otherwise check if the character has the same mapping as before, if not return false.
