@@ -30,3 +30,10 @@ class Solution {
 }
 
 }
+--------------------------explaind.
+This implementation starts by initializing left and right pointers to the start and end of the matrix,
+respectively. Then, it uses a while loop to perform a binary search. In each iteration, 
+it calculates the middle position of the current search range by dividing the number of columns by the middle index. Then,
+it checks if the element at that position is equal to the target. If it is, the function returns true. If not, it checks whether the element 
+is greater or less than the target and adjusts the left or right pointer accordingly.
+If the while loop completes without finding the target, the function returns false.
