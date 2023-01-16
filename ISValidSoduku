@@ -1,1 +1,51 @@
 
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        // Verify rows
+        for (int i = 0; i < 9; i++) {
+            boolean[] row = new boolean[9];
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.') {
+                    if (row[board[i][j] - '1']) {
+                        return false;
+                    }
+                    row[board[i][j] - '1'] = true;
+                }
+            }
+        }
+        // Verify columns
+        for (int i = 0; i < 9; i++) {
+            boolean[] col = new boolean[9];
+            for (int j = 0; j < 9; j++) {
+                if (board[j][i] != '.') {
+                    if (col[board[j][i] - '1']) {
+                        return false;
+                    }
+                    col[board[j][i] - '1'] = true;
+                }
+            }
+        }
+        // Verify sub-boxes
+        for (int i = 0; i < 9; i += 3) {
+            for (int j = 0; j < 9; j += 3) {
+                boolean[] subBox = new boolean[9];
+                for (int k = 0; k < 3; k++) {
+                    for (int l = 0; l < 3; l++) {
+                        if (board[i + k][j + l] != '.') {
+                            if (subBox[board[i + k][j + l] - '1']) {
+                                return false;
+                            }
+                            subBox[board[i + k][j + l] - '1'] = true;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
+====================explaind solution=========
+La solución utiliza tres bucles anidados para recorrer cada fila, columna y sub-caja del tablero. Dentro de cada bucle,
+se utiliza un arreglo de booleanos para registrar si un dígito ya ha sido visto o no. Si un dígito ya ha sido visto y se encuentra nuevamente,
+se devuelve false (el tablero no es válido).
+Si todas las filas, columnas y sub-cajas son válidas, se devuelve true (el tablero es válido)
