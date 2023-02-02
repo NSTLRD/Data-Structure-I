@@ -1,0 +1,20 @@
+class Solution {
+    public String gcdOfStrings(String str1, String str2) {
+        if (!(str1 + str2).equals(str2 + str1)) return "";
+        return str1.substring(0, gcd(str1.length(), str2.length()));
+    }
+    
+    private int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+}
+
+solution definition
+En este código, primero se verifica si el resultado de concatenar str1 y str2 es 
+igual al resultado de concatenar str2 y str1. Si no son iguales,
+eso significa que no hay ninguna cadena x que divida ambas cadenas,
+por lo que se devuelve una cadena vacía.
+Si son iguales, entonces utilizamos el método gcd para calcular el máximo común divisor 
+de los tamaños de las dos cadenas. Luego, devolvemos la subcadena de str1 desde el principio hasta el tamaño del máximo común divisor,
+que es la cadena más grande que divide a ambas cadenas.
+
