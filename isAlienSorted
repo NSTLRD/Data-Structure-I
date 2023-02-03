@@ -1,0 +1,32 @@
+class Solution {
+    public boolean isAlienSorted(String[] words, String order) {
+        int[] index = new int[26];
+        for (int i = 0; i < order.length(); i++) {
+            index[order.charAt(i) - 'a'] = i;
+        }
+        
+        for (int i = 1; i < words.length; i++) {
+            if (compare(words[i - 1], words[i], index) > 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    private int compare(String word1, String word2, int[] index) {
+        int n = Math.min(word1.length(), word2.length());
+        for (int i = 0; i < n; i++) {
+            if (word1.charAt(i) != word2.charAt(i)) {
+                return index[word1.charAt(i) - 'a'] - index[word2.charAt(i) - 'a'];
+            }
+        }
+        return word1.length() - word2.length();
+    }
+}
+Explanation:
+
+Create an array index to store the index of each lowercase letter in the order.
+For each pair of adjacent words in the words array, use the compare method to compare the two words. If the result is greater than 0, return false because it means the words are not sorted.
+In the compare method, compare the characters of the two words one by one. If they are different, return the difference between their indices in the index array. If they are the same, compare the length of the two words. If the length of the first word is greater than the second word, return the difference of their lengths.
+If the loop in step 2 finishes without returning false, return true because the words are sorted.
