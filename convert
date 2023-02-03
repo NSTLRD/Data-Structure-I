@@ -1,0 +1,33 @@
+
+class Solution {
+    public String convert(String s, int numRows) {
+        if (numRows == 1) return s;
+        
+        StringBuilder[] sb = new StringBuilder[numRows];
+        for (int i = 0; i < numRows; i++) sb[i] = new StringBuilder();
+        
+        int len = s.length();
+        int i = 0;
+        while (i < len) {
+            for (int row = 0; row < numRows && i < len; row++) {
+                sb[row].append(s.charAt(i++));
+            }
+            for (int row = numRows - 2; row >= 1 && i < len; row--) {
+                sb[row].append(s.charAt(i++));
+            }
+        }
+        
+        for (int row = 1; row < numRows; row++) {
+            sb[0].append(sb[row]);
+        }
+        return sb[0].toString();
+    }
+}
+
+
+Explanation:
+
+If the number of rows is 1, the original string is returned.
+A string builder array is created to store intermediate results of each row.
+The main logic of the code is to iterate over the original string and place characters in the appropriate row based on the zigzag pattern.
+After the loop, all rows are appended to the first row to get the final result.
