@@ -1,0 +1,29 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int maxLen = 0;
+        int[] lastIndex = new int[256];
+        Arrays.fill(lastIndex, -1);
+        int start = 0;
+        for (int end = 0; end < n; end++) {
+            char c = s.charAt(end);
+            if (lastIndex[c] >= start) {
+                start = lastIndex[c] + 1;
+            }
+            lastIndex[c] = end;
+            maxLen = Math.max(maxLen, end - start + 1);
+        }
+        return maxLen;
+    }
+}
+
+The idea of the algorithm is to use a sliding window to keep track of the longest substring without repeating characters. 
+We maintain two pointers start and end which represent the start and end indices of the current substring. 
+We also use an array lastIndex of size 256 to keep track of the last index of each character in the substring.
+
+We iterate over the string s using the end pointer. For each character c at index end, we check if its last index is greater
+than or equal to start. If it is, then it means c is already present in the substring, and we need to move the start pointer 
+to the next index of the last occurrence of c. We update the lastIndex array with the current index of c. We also update 
+the maxLen variable with the length of the current substring.
+
+At the end of the iteration, maxLen will contain the length of the longest substring without repeating characters.
