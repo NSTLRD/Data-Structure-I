@@ -1,0 +1,14 @@
+import java.time.LocalDate;
+
+public class Solution {
+    public static String findDay(int month, int day, int year) {
+        LocalDate date = LocalDate.of(year, month, day);
+        return date.getDayOfWeek().toString();
+    }
+}
+
+Explanation:
+We can use the LocalDate class in Java 8's java.time package to easily get the day of the week for a given date.
+We create a LocalDate object with the given year, month, and day, and then call its getDayOfWeek() method to get the corresponding DayOfWeek enum value. 
+Finally, we convert this enum value to a string 
+using the toString() method and return it as the result of the findDay function.
